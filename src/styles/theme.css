@@ -1,0 +1,197 @@
+/* LIGHT THEME (default) */
+:root {
+  --bg: #f5f6f7;
+  --sidebar-bg: #f3f4f6;
+  --panel-bg1: #ffffff;
+  --panel-border: #d9dce1;
+  --panel-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  --arrow-color: black;
+  --text-section:#80858f;
+  --pumpperc:gray;
+  --center-icon:black;
+  --exchanger:white;
+  --insideexchanger:white;
+  --bridgeicon:white;
+  --digbg:white;
+  --bottomline:#80858f;
+  --digitalborder: #dcdcdc;
+  --borderone2:#f5f6f7;
+  --inbtn1:#f5f6f7;
+  --outbtn1:white;
+ 
+
+  --muted: #6d7380;
+  --text-dark: #8c8c8c;
+  --header-light: #80858f;
+  --border-light: #e2e6ea;
+
+  --blue: #1a73e8;
+  --icon-hover: #e7e5e5;
+  --icon-active: #d4d2d2;
+  --pumpbg:black;
+  --placeholder-color: red;
+  --sub-title-color: black;
+  --main-title-color: black;
+  --clock-color: black;
+  --date-color: black;
+}
+
+/* DARK THEME */
+[data-theme="dark"] {
+  --bg: #2c2d31;
+  --panel-bg: #1e1f22;
+  --panel-bg1: #1e1f22;
+  --digbg:#2c2d31;
+  --digitalborder:#2c2d31;
+  --exchanger:#2c2d31;
+  --inbtn1:#26272b;
+  --outbtn1:#505258;
+  --insideexchanger:#505258;
+  --borderone2:#505258;
+  --bridgeicon:#2c2d31;
+  --inpump:#2c2d31;
+  --label11:white;
+
+  --text-dark1: white;
+  --sidebar-bg: #26272b;
+  
+  --panel-border: #3b3d42;
+  --panel-shadow: 0 3px 10px rgba(0, 0, 0, 0.55);
+  
+  --muted: #9aa0ad;
+  --header-light: #aeb4c2;
+  --border-light: #3b3d42;
+  
+  --blue: #4a90ff;
+  --icon-hover: #3a3b40;
+  --icon-active: #2e2f33;
+  --text-head:black;
+  --main-title-color: white;
+  --date-color: white;
+  --persentage:#80858f;
+  --bottomline:black;
+  --linecolor:gray;
+}
+body, html, #root {
+  background: var(--bg) !important;
+  color: var(--text-dark) !important;
+}
+
+/* Sidebar */
+.scada-rail {
+  background: var(--sidebar-bg) !important;
+  border-color: var(--border-light) !important;
+}
+
+/* Top bar */
+.topbar1, .scada-topbar, .sidebar {
+  background: var(--panel-bg) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  color: var(--text-dark) !important;
+}
+
+/* Panels */
+.panel, .panel-body, .panel-head {
+  background: var(--panel-bg1,) !important;
+  color: var(--text-dark) !important;
+  border-color: var(--panel-border) !important;
+  /* box-shadow: var(--panel-shadow) !important; */
+}
+
+
+/* Icons */
+.icons, .icons1, .icon2, .icon3 {
+  color: var(--text-dark1);
+}
+span1 {
+  color: var(--text-dark1);
+}
+.icons:hover, .icons1:hover, .icon2:hover, .icon3:hover {
+  background: var(--icon-hover);
+}
+
+.icons:active, .icons1:active, .icon2:active, .icon3:active {
+  background: var(--icon-active);
+}
+
+/* In dark mode, invert SVG icons for visibility */
+[data-theme="dark"] .icons svg,
+[data-theme="dark"] .icons1 svg,
+[data-theme="dark"] .icon2 svg,
+[data-theme="dark"] .icon3 svg {
+  filter: invert(1);
+}
+
+/* SCADA STAGE */
+.scada-stage {
+  background: var(--bg) !important;
+  border-color: var(--border-light) !important;
+}
+.verpump {
+    color: var(--pumpbg)
+}
+.placeholder {
+    color: var(--placeholder-color);
+}
+.sub-title {
+    color: var(--sub-title-color);
+}
+.main-title {
+    color: var(--main-title-color);
+}
+.clock{
+    color: var(--clock-color);
+}
+.date{
+    color: var(--date-color);
+}
+.arrowL1,.arrowR1,.dumpR1,.dumpL1,.freeR1,.freeL1{
+    color: var(--arrow-color);
+}
+.exchanger1,.exchanger11,.exchanger21,.exchanger31{
+    color: var(--arrow-color);
+}
+.section-title{
+    color: var(--text-section);
+    font-size: 10px;  
+}
+.pumpperc,.pumpunit{
+    color: var(--pumpperc);
+}
+.inheat,.incold,.inpump,.insideone{
+    color: var(--center-icon);
+}
+.value1, .unit1{
+  color: var(--persentage);
+}
+.digital{
+  background-color: var(--digbg);
+  border-color: var(--digitalborder);
+}
+.bottom-line{
+  background-color:var(--bottomline) ;
+}
+.horline1{
+  color: var(--linecolor);
+}
+.exchangers{
+  background: var(--exchanger);
+}
+.exchangerin,.exchangericon{
+  background:var(--insideexchanger);
+}
+.bridgeicon{
+  background: var(--bridgeicon);
+}
+.label11,.label1{
+  color: var(--label11);
+}
+.borderone2{
+  background-color: var(--borderone2);
+}
+.inbtn1{
+  background-color: var(--inbtn1);
+}
+.outbtn1{
+  background-color: var(--outbtn1);
+}
