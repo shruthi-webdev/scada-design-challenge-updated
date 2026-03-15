@@ -96,8 +96,8 @@ span1{
   font-weight: 700;
 }
 .sidebar{
+  display: none; /* Hidden - replaced with new Sidebar component */
   position: relative;
-  display: flex;
   align-items: center;
   top: 0px;
   left: 0;
@@ -3435,14 +3435,18 @@ automation-readout {
 .scada-wrapper{
   border: 2px solid black;
   top: 10px;
-  left: 10px;
+  left: 60px;
   position: absolute;
-  transition: transform 0.15s ease;
-}
-.scada-wrapper {
+  transition: transform 0.15s ease, left 0.3s ease-in-out, width 0.3s ease-in-out;
   transform: scale(0.90);
   transform-origin: top left;
-  width: calc(100% / 0.90);
-  height: calc(100% / 0.90);
+  width: calc(100vw - 80px);
+  height: calc(100vh - 45px);
   overflow: hidden;
+}
+
+/* Adjust wrapper when sidebar is expanded */
+.scada-stage[data-sidebar="expanded"] .scada-wrapper {
+  left: 220px;
+  width: calc(100vw - 240px);
 }

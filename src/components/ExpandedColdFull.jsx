@@ -1,8 +1,10 @@
 // src/components/ExpandedColdFull.jsx
 import React from "react";
 import "../styles/expanded-cold.css";
+import "../styles/sidebar.css";
 import { useState, useEffect } from "react";
 import "../styles/theme.css";
+import Sidebar from "./Sidebar";
 
 export default function ExpandedColdFull() {
   const [theme, setTheme] = useState("light");
@@ -76,7 +78,6 @@ export default function ExpandedColdFull() {
       {/* top bar */}
       <div class="topbar1">
         <div class="topbarleft">
-          <div class="icons"><obi-menu-iec></obi-menu-iec></div>
           <div class="icons"><obi-arrow-left-google></obi-arrow-left-google></div>
           <div class='icons'><obi-arrow-right-google></obi-arrow-right-google></div>
           <div class="icons main-title"><label class="titleicon" >Teknotherm SCADA</label></div>
@@ -102,28 +103,9 @@ export default function ExpandedColdFull() {
           <div class="icons1"><obi-applications></obi-applications></div>
         </div>
       </div>
-      <div class="sidebar">
-        <div class="allicon2">
-          <div class="icon2"><obi-dashboard></obi-dashboard></div>
-          <div class="icon2"><obi-diagnostic-google></obi-diagnostic-google></div>
-          <div class="icon2 placeholder"><obi-alarm-acknowledged-iec></obi-alarm-acknowledged-iec></div>
-          <div class="icon2"><obi-own-ship-iec></obi-own-ship-iec></div>
-          <div class="icon2"><obi-propulsion-static></obi-propulsion-static></div>
-          <div class="icon2"><obi-propulsion-static></obi-propulsion-static></div>
-          <div class="icon2"><obi-wrench></obi-wrench></div>
-          <div class="icon2"><obi-engine-fill></obi-engine-fill></div>
-          <div class="icon2 placeholder"><obi-alarm-acknowledged-iec></obi-alarm-acknowledged-iec></div>
-          <div class="icon2 placeholder"><obi-alarm-acknowledged-iec></obi-alarm-acknowledged-iec></div>
-          <div class="icon2"><obi-battery-vertical-empty ></obi-battery-vertical-empty></div>
-          <div class="icon2"><obi-battery-vertical-empty></obi-battery-vertical-empty></div>
-          
-        </div>
-        <div class="allicon3">
-          <div class="icon3"><obi-alert-list></obi-alert-list></div>
-          <div class="icon3"><obi-settings-iec></obi-settings-iec></div>
-        </div>
-      </div>
-      {/* left rail */}
+
+      {/* New Collapsible Sidebar */}
+      <Sidebar />
 
       {/* main viewport */}
 
