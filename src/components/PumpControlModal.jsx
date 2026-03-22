@@ -5,14 +5,15 @@ import "../styles/pump-modal.css";
 /**
  * Pump Control Modal
  * Props:
- *   isOpen     – boolean
- *   onClose    – function
- *   pumpId     – string, e.g. "PRI1"
- *   pumpLabel  – string, e.g. "PRI-01"
+ *   isOpen        – boolean
+ *   onClose       – function
+ *   pumpId        – string, e.g. "PRI1"
+ *   pumpLabel     – string, e.g. "PRI-01"
+ *   speed         – number, current speed percentage
+ *   onSpeedChange – function(newSpeed) called when speed changes
  */
-export default function PumpControlModal({ isOpen, onClose, pumpId, pumpLabel }) {
+export default function PumpControlModal({ isOpen, onClose, pumpId, pumpLabel, speed, onSpeedChange }) {
   const [mode, setMode] = useState("manual"); // "off" | "manual" | "auto"
-  const [speed, setSpeed] = useState(10);
 
   if (!isOpen) return null;
 
@@ -21,6 +22,11 @@ export default function PumpControlModal({ isOpen, onClose, pumpId, pumpLabel })
   };
 
   const clampSpeed = (v) => Math.max(0, Math.min(100, v));
+
+  const changeSpeed = (delta) => {
+    const newSpeed = clampSpeed(speed + delta);
+    onSpeedChange(newSpeed);
+  };
 
   return (
     <div className="pump-modal-overlay" onClick={handleOverlayClick}>
@@ -71,11 +77,11 @@ export default function PumpControlModal({ isOpen, onClose, pumpId, pumpLabel })
 
           {/* Speed control */}
           <div className="pump-modal-speed-row">
-            <button className="pump-modal-speed-btn" onClick={() => setSpeed(clampSpeed(speed - 10))}>«</button>
-            <button className="pump-modal-speed-btn" onClick={() => setSpeed(clampSpeed(speed - 1))}>‹</button>
+            <button className="pump-modal-speed-btn" onClick={() => changeSpeed(-10)}>«</button>
+            <button className="pump-modal-speed-btn" onClick={() => changeSpeed(-1)}>‹</button>
             <div className="pump-modal-speed-display">{speed}%</div>
-            <button className="pump-modal-speed-btn" onClick={() => setSpeed(clampSpeed(speed + 1))}>›</button>
-            <button className="pump-modal-speed-btn" onClick={() => setSpeed(clampSpeed(speed + 10))}>»</button>
+            <button className="pump-modal-speed-btn" onClick={() => changeSpeed(1)}>›</button>
+            <button className="pump-modal-speed-btn" onClick={() => changeSpeed(10)}>»</button>
           </div>
           <div className="pump-modal-speed-labels">
             <span className="pump-modal-speed-label">-10</span>

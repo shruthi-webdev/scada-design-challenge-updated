@@ -16,10 +16,35 @@ export default function ExpandedColdFull() {
   const [activeValve, setActiveValve] = useState(null);
   const [activePump, setActivePump] = useState(null);
 
+  // Valve open/closed state map
+  const [valveStates, setValveStates] = useState({
+    AFT_V1: 'open', AFT_V2: 'open', AFT_V3: 'open',
+    FWD_V1: 'open', FWD_V2: 'open', FWD_V3: 'open',
+    REC_V1: 'open', SEL_V1: 'open', DMP_V1: 'open',
+    MIX_V1: 'open', RSL_V1: 'open', RSL_V2: 'open', FRE_V1: 'open',
+  });
+
+  // Pump speed percentage map
+  const [pumpSpeeds, setPumpSpeeds] = useState({
+    SEC1: 10, SEC2: 10, PRI1: 10, PRI2: 10,
+    DMP1: 10, RS1: 10, RS2: 10, RP1: 10, RP2: 10, FRE1: 10,
+  });
+
   const openValveModal = (id, label) => setActiveValve({ id, label });
   const closeValveModal = () => setActiveValve(null);
+  const handleValveStateChange = (newState) => {
+    if (activeValve) {
+      setValveStates(prev => ({ ...prev, [activeValve.id]: newState }));
+    }
+  };
+
   const openPumpModal = (id, label) => setActivePump({ id, label });
   const closePumpModal = () => setActivePump(null);
+  const handlePumpSpeedChange = (newSpeed) => {
+    if (activePump) {
+      setPumpSpeeds(prev => ({ ...prev, [activePump.id]: newSpeed }));
+    }
+  };
 
 
   useEffect(() => {
@@ -141,11 +166,11 @@ export default function ExpandedColdFull() {
                 <div class="horline3"><obc-horizontal-line length="21.4" ></obc-horizontal-line></div>
                 <div class="twovalve1 bridgeicon valve-clickable" onClick={() => openValveModal('AFT_V2', 'AFT Valve 2')}><obc-valve-analog-two-way-icon value="100"></obc-valve-analog-two-way-icon></div>
                 <div class='work1'>
-                  <label>Open</label>
+                  <label>{valveStates.AFT_V2 === 'open' ? 'Open' : 'Closed'}</label>
                 </div>
                 <div class="twovalve2 bridgeicon valve-clickable" onClick={() => openValveModal('AFT_V3', 'AFT Valve 3')}><obc-valve-analog-two-way-icon value="100"></obc-valve-analog-two-way-icon></div>
                 <div class='work2'>
-                  <label>Open</label>
+                  <label>{valveStates.AFT_V3 === 'open' ? 'Open' : 'Closed'}</label>
                 </div>
                 <div class="corner2"><obc-corner-line direction="top-left"></obc-corner-line></div>
                 <div class='varline2'><obc-vertical-line length="0.5" ></obc-vertical-line></div>
@@ -234,11 +259,11 @@ export default function ExpandedColdFull() {
                 <div class="horline3"><obc-horizontal-line length="21.2" ></obc-horizontal-line></div>
                 <div class="twovalve1 bridgeicon valve-clickable" onClick={() => openValveModal('FWD_V2', 'FWD Valve 2')}><obc-valve-analog-two-way-icon value="100"></obc-valve-analog-two-way-icon></div>
                 <div class='work1'>
-                  <label>Open</label>
+                  <label>{valveStates.FWD_V2 === 'open' ? 'Open' : 'Closed'}</label>
                 </div>
                 <div class="twovalve2 bridgeicon valve-clickable" onClick={() => openValveModal('FWD_V3', 'FWD Valve 3')}><obc-valve-analog-two-way-icon value="100"></obc-valve-analog-two-way-icon></div>
                 <div class='work2'>
-                  <label>Open</label>
+                  <label>{valveStates.FWD_V3 === 'open' ? 'Open' : 'Closed'}</label>
                 </div>
                 <div class="corner2"><obc-corner-line direction="top-left"></obc-corner-line></div>
                 <div class='varline2'><obc-vertical-line length="0.5" ></obc-vertical-line></div>
@@ -318,12 +343,12 @@ export default function ExpandedColdFull() {
               <div className="pid small">
                 <div class="horpump1 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('SEC1', 'SEC-01')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                 <div class="pumpvalve">
-                  <span class="pumpperc">10</span>
+                  <span class="pumpperc">{pumpSpeeds.SEC1}</span>
                   <span class="pumpunit">%</span>
                 </div>
                 <div class="horpump2 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('SEC2', 'SEC-02')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                 <div class="pumpvalve1">
-                  <span class="pumpperc">10</span>
+                  <span class="pumpperc">{pumpSpeeds.SEC2}</span>
                   <span class="pumpunit">%</span>
                 </div>
                 <div class="secline1"><obc-horizontal-line length="0.5" ></obc-horizontal-line></div>
@@ -401,12 +426,12 @@ export default function ExpandedColdFull() {
               <div className="pid small">
                   <div class="primpump1 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('PRI1', 'PRI-01')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                   <div class="pumpvalve11">
-                    <span class="pumpperc">10</span>
+                    <span class="pumpperc">{pumpSpeeds.PRI1}</span>
                     <span class="pumpunit">%</span>
                   </div>
                   <div class="primpump2 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('PRI2', 'PRI-02')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                   <div class="pumpvalve12">
-                    <span class="pumpperc">10</span>
+                    <span class="pumpperc">{pumpSpeeds.PRI2}</span>
                     <span class="pumpunit">%</span>
                   </div>
                 <div class="primline1"><obc-horizontal-line length="0.5" ></obc-horizontal-line></div>
@@ -511,7 +536,7 @@ export default function ExpandedColdFull() {
                 <div class="dumpL1"><obi-arrow-left-google></obi-arrow-left-google></div>
                 <div class="dumppump1 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('DMP1', 'DMP-01')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                   <div class="dumpvalve11">
-                    <label class="work1">On</label>
+                    <label class="work1">{pumpSpeeds.DMP1 > 0 ? 'On' : 'Off'}</label>
                   </div>
                 <div class="dumpdig1 digital">
                   <span class="value">00</span>
@@ -727,12 +752,12 @@ export default function ExpandedColdFull() {
               <div className="pid">
                 <div class="seconpump1 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('RS1', 'RS-01')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                 <div class="seconvalve">
-                  <span class="pumpperc">10</span>
+                  <span class="pumpperc">{pumpSpeeds.RS1}</span>
                   <span class="pumpunit">%</span>
                 </div>
                 <div class="seconpump2 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('RS2', 'RS-02')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                 <div class="seconvalve1">
-                  <span class="pumpperc">10</span>
+                  <span class="pumpperc">{pumpSpeeds.RS2}</span>
                   <span class="pumpunit">%</span>
                 </div>
                 <div class="seconline1"><obc-horizontal-line length="0.5" ></obc-horizontal-line></div>
@@ -759,11 +784,11 @@ export default function ExpandedColdFull() {
               <div className="pid small">
                 <div class="primapump1 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('RP1', 'RP-01')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                 <div class="pumpavalve11">
-                    <label class="work1">On</label>
+                    <label class="work1">{pumpSpeeds.RP1 > 0 ? 'On' : 'Off'}</label>
                 </div>
                 <div class="primapump2 verpump bridgeicon pump-clickable" onClick={() => openPumpModal('RP2', 'RP-02')}><obi-pump-on-vertical on='True' vertical='False' ></obi-pump-on-vertical></div>
                   <div class="pumpavalve12">
-                    <label class="work1">On</label>
+                    <label class="work1">{pumpSpeeds.RP2 > 0 ? 'On' : 'Off'}</label>
                   </div>
                 <div class="primaline1"><obc-horizontal-line length="0.5" ></obc-horizontal-line></div>
                 <div class="primaline2"><obc-horizontal-line length="0.5" ></obc-horizontal-line></div>
@@ -831,11 +856,11 @@ export default function ExpandedColdFull() {
                 <div class="selecorner4"><obc-corner-line direction='top-left'></obc-corner-line></div>
                 <div class="seleline6"><obc-horizontal-line length="1.3" ></obc-horizontal-line></div>
                 <div class="selevalve11">
-                    <label class="work1">Open</label>
+                    <label class="work1">{valveStates.RSL_V1 === 'open' ? 'Open' : 'Closed'}</label>
                 </div>
                 <div class="selevalve2 bridgeicon valve-clickable" onClick={() => openValveModal('RSL_V2', 'R-Selection Valve 2')}><obc-valve-analog-two-way-icon value="100"></obc-valve-analog-two-way-icon></div>
                 <div class="selevalve12">
-                    <label class="work1">Open</label>
+                    <label class="work1">{valveStates.RSL_V2 === 'open' ? 'Open' : 'Closed'}</label>
                   </div>
                 <div class="seledir1"><obc-direction-line direction="left"></obc-direction-line></div>
                 <div class="seledir2"><obc-direction-line direction="left"></obc-direction-line></div>
@@ -875,7 +900,7 @@ export default function ExpandedColdFull() {
                 <div class="freecorner6"><obc-corner-line direction="top-left"></obc-corner-line></div>
                 <div class="freeline9"><obc-horizontal-line length="1.7" ></obc-horizontal-line></div>
                 <div class="freevalve11">
-                    <label class="work1">On</label>
+                    <label class="work1">{pumpSpeeds.FRE1 > 0 ? 'On' : 'Off'}</label>
                 </div>
                 <div class="freedig1 digital">
                   <span class="value">00</span>
@@ -943,6 +968,8 @@ export default function ExpandedColdFull() {
         onClose={closeValveModal}
         valveId={activeValve?.id || ''}
         valveLabel={activeValve?.label || ''}
+        valveState={activeValve ? valveStates[activeValve.id] : 'closed'}
+        onStateChange={handleValveStateChange}
       />
 
       {/* Pump Control Modal */}
@@ -951,6 +978,8 @@ export default function ExpandedColdFull() {
         onClose={closePumpModal}
         pumpId={activePump?.id || ''}
         pumpLabel={activePump?.label || ''}
+        speed={activePump ? pumpSpeeds[activePump.id] : 10}
+        onSpeedChange={handlePumpSpeedChange}
       />
       
     </div>

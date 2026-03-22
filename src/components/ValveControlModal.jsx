@@ -1,18 +1,18 @@
 // src/components/ValveControlModal.jsx
-import React, { useState } from "react";
+import React from "react";
 import "../styles/valve-modal.css";
 
 /**
  * Valve Control Modal
  * Props:
- *   isOpen   – boolean, controls visibility
- *   onClose  – function, called when closing the modal
- *   valveId  – string, e.g. "AFT1_V1"
- *   valveLabel – string, e.g. "AFT1 Valve 1"
+ *   isOpen        – boolean, controls visibility
+ *   onClose       – function, called when closing the modal
+ *   valveId       – string, e.g. "AFT1_V1"
+ *   valveLabel    – string, e.g. "AFT1 Valve 1"
+ *   valveState    – "open" | "closed"
+ *   onStateChange – function(newState) called when user toggles open/closed
  */
-export default function ValveControlModal({ isOpen, onClose, valveId, valveLabel }) {
-  const [valveState, setValveState] = useState("closed");
-
+export default function ValveControlModal({ isOpen, onClose, valveId, valveLabel, valveState, onStateChange }) {
   if (!isOpen) return null;
 
   const isValveOpen = valveState === "open";
@@ -74,13 +74,13 @@ export default function ValveControlModal({ isOpen, onClose, valveId, valveLabel
         <div className="valve-modal-footer">
           <button
             className={`valve-modal-btn valve-modal-btn-closed ${!isValveOpen ? "active" : ""}`}
-            onClick={() => setValveState("closed")}
+            onClick={() => onStateChange("closed")}
           >
             Closed
           </button>
           <button
             className={`valve-modal-btn valve-modal-btn-open ${isValveOpen ? "active" : ""}`}
-            onClick={() => setValveState("open")}
+            onClick={() => onStateChange("open")}
           >
             Open
           </button>
