@@ -15,6 +15,24 @@ export default function ExpandedColdFull() {
   const [showBrilliance, setShowBrilliance] = useState(false);
   const [activeValve, setActiveValve] = useState(null);
   const [activePump, setActivePump] = useState(null);
+  // Temperature system state
+  const [isSystemEnabled, setIsSystemEnabled] = useState(false);
+  const [randomTemps, setRandomTemps] = useState(Array(60).fill('00'));
+
+  // Generate random temps between 10 and 80 when system is enabled
+  useEffect(() => {
+    let intervalId;
+    if (isSystemEnabled) {
+      setRandomTemps(Array.from({ length: 60 }, () => Math.floor(Math.random() * 70 + 10).toString()));
+      intervalId = setInterval(() => {
+        setRandomTemps(Array.from({ length: 60 }, () => Math.floor(Math.random() * 70 + 10).toString()));
+      }, 3000);
+    } else {
+      setRandomTemps(Array(60).fill('00'));
+    }
+    return () => clearInterval(intervalId);
+  }, [isSystemEnabled]);
+
 
   // Valve open/closed state map
   const [valveStates, setValveStates] = useState({
@@ -179,7 +197,7 @@ export default function ExpandedColdFull() {
                 <div class="dirline3"><obc-direction-line direction="right" ></obc-direction-line></div>
                 <div class="dirline4"><obc-direction-line direction="left" ></obc-direction-line> </div>
                 <div class="dig1 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[0]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
@@ -212,17 +230,17 @@ export default function ExpandedColdFull() {
                   </div>
                 </div>
                 <div class="dig2 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[1]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="dig3 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[2]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="dig4 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[3]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
@@ -272,7 +290,7 @@ export default function ExpandedColdFull() {
                 <div class="dirline3"><obc-direction-line direction="right" ></obc-direction-line></div>
                 <div class="dirline4"><obc-direction-line direction="left" ></obc-direction-line> </div>
                 <div class="dig1 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[4]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
@@ -305,17 +323,17 @@ export default function ExpandedColdFull() {
                   </div>
                 </div>
                 <div class="dig2 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[5]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="dig3 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[6]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="dig4 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[7]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
@@ -461,12 +479,12 @@ export default function ExpandedColdFull() {
                 <div class="primdir5"><obc-direction-line direction="right"></obc-direction-line></div>
                 <div class="primdir6"><obc-direction-line direction="right"></obc-direction-line></div>
                 <div class="primdig1 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[8]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="primdig2 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[9]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
@@ -539,22 +557,22 @@ export default function ExpandedColdFull() {
                     <label class="work1">{pumpSpeeds.DMP1 > 0 ? 'On' : 'Off'}</label>
                   </div>
                 <div class="dumpdig1 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[10]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="dumpdig2 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[11]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="dumpdig3 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[12]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="dumpdig4 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[13]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
@@ -630,22 +648,22 @@ export default function ExpandedColdFull() {
                     <div className="section-title">TEMP. READOUTS</div>
 
                     <div className="row1">
-                      <span className="icon">00°</span>
+                      <span className="icon">{randomTemps[20]}°</span>
                       <span className="label11">Seawater C</span>
                     </div>
 
                     <div className="row1">
-                      <span className="icon">00°</span>
+                      <span className="icon">{randomTemps[21]}°</span>
                       <span className="label11">Outdoor C</span>
                     </div>
 
                     <div className="row1">
-                      <span className="icon">00°</span>
+                      <span className="icon">{randomTemps[22]}°</span>
                       <span className="label11">Warm water S. C</span>
                     </div>
 
                     <div className="row1">
-                      <span className="icon">00°</span>
+                      <span className="icon">{randomTemps[23]}°</span>
                       <span className="label11">Cold water S. C</span>
                     </div>
 
@@ -653,22 +671,20 @@ export default function ExpandedColdFull() {
 
                     <div className="row1">
                       <span className="arrow">►</span>
-                      <span className="iconar">00</span>
+                      <span className="iconar">{randomTemps[24]}</span>
                       <span className="label11">Warm water C C</span>
                     </div>
 
                     <div className="row1">
                       <span className="arrow">►</span>
-                      <span className="iconar">00</span>
+                      <span className="iconar">{randomTemps[25]}</span>
                       <span className="label11">Cold water C C</span>
                     </div>
 
                     <div className="section-title">OPERATIONS</div>
 
                     <div className="toggle-row">
-                      <span className="label1">Enable System</span>
-                      <label className="switch">
-                        <input type="checkbox" defaultChecked />
+                      <span className="label1">Enable System</span>\n                      <label className="switch">\n                        <input type="checkbox" checked={isSystemEnabled} onChange={(e) => setIsSystemEnabled(e.target.checked)} />
                         <span className="slider"></span>
                       </label>
                     </div>
@@ -818,12 +834,12 @@ export default function ExpandedColdFull() {
                 <div class="primadir5"><obc-direction-line direction="right"></obc-direction-line></div>
                 <div class="primadir6"><obc-direction-line direction="right"></obc-direction-line></div>
                 <div class="primadig1 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[14]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="primadig2 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[15]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
@@ -903,22 +919,22 @@ export default function ExpandedColdFull() {
                     <label class="work1">{pumpSpeeds.FRE1 > 0 ? 'On' : 'Off'}</label>
                 </div>
                 <div class="freedig1 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[16]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="freedig2 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[17]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="freedig3 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[18]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
                 <div class="freedig4 digital">
-                  <span class="value">00</span>
+                  <span class="value">{randomTemps[19]}</span>
                   <span class="unit">°C</span>
                   <div class="bottom-line"></div>
                 </div>
