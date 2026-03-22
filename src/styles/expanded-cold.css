@@ -3432,21 +3432,3 @@ automation-readout {
 }
 
 
-.scada-wrapper{
-  border: 2px solid black;
-  top: 10px;
-  left: 60px;
-  position: absolute;
-  transition: transform 0.15s ease, left 0.3s ease-in-out, width 0.3s ease-in-out;
-  transform: scale(0.90);
-  transform-origin: top left;
-  width: calc(100vw - 80px);
-  height: calc(100vh - 45px);
-  overflow: hidden;
-}
-
-/* Adjust wrapper when sidebar is expanded */
-.scada-stage[data-sidebar="expanded"] .scada-wrapper {
-  left: 220px;
-  width: calc(100vw - 240px);
-}

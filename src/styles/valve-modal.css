@@ -1,0 +1,210 @@
+/* ─── Valve Control Modal ─── */
+
+/* Overlay */
+.valve-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: valve-modal-fadein 0.18s ease;
+}
+
+@keyframes valve-modal-fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Card */
+.valve-modal-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  min-width: 340px;
+  max-width: 420px;
+  width: 90vw;
+  padding: 0;
+  overflow: hidden;
+  animation: valve-modal-slidein 0.22s ease;
+}
+
+@keyframes valve-modal-slidein {
+  from { transform: translateY(24px) scale(0.97); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Header */
+.valve-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px 0 22px;
+}
+
+.valve-modal-title {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: 0.02em;
+}
+
+.valve-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: #888;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1;
+}
+
+.valve-modal-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Body */
+.valve-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 22px 10px 22px;
+}
+
+/* Percentage display */
+.valve-modal-percent {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  margin-bottom: 2px;
+}
+
+.valve-modal-percent-dim {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #bbb;
+}
+
+.valve-modal-percent-bold {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: #003366;
+}
+
+.valve-modal-percent-unit {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #888;
+  margin-left: 2px;
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+/* Label */
+.valve-modal-label {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+}
+
+/* Valve icon */
+.valve-modal-icon-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.valve-modal-connector {
+  width: 18px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.valve-modal-connector svg {
+  width: 18px;
+  height: 10px;
+}
+
+.valve-modal-valve-svg {
+  width: 56px;
+  height: 44px;
+}
+
+.valve-modal-valve-svg.open-state polygon,
+.valve-modal-valve-svg.open-state path {
+  fill: #1a1a2e;
+  stroke: #1a1a2e;
+}
+
+.valve-modal-valve-svg.closed-state polygon,
+.valve-modal-valve-svg.closed-state path {
+  fill: #c0c0c0;
+  stroke: #c0c0c0;
+}
+
+/* Footer buttons */
+.valve-modal-footer {
+  display: flex;
+  gap: 0;
+  padding: 0;
+  border-top: 1px solid #eee;
+}
+
+.valve-modal-btn {
+  flex: 1;
+  padding: 14px 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  letter-spacing: 0.01em;
+}
+
+.valve-modal-btn-closed {
+  border-radius: 0 0 0 16px;
+  background: #f0f0f0;
+  color: #555;
+}
+
+.valve-modal-btn-open {
+  border-radius: 0 0 16px 0;
+  background: #f0f0f0;
+  color: #555;
+}
+
+.valve-modal-btn.active {
+  background: #003d7a;
+  color: #fff;
+}
+
+.valve-modal-btn:not(.active):hover {
+  background: #e0e0e0;
+}
+
+/* Clickable valve wrapper */
+.valve-clickable {
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+
+.valve-clickable:hover {
+  filter: brightness(1.15) drop-shadow(0 0 4px rgba(0,61,122,0.25));
+}
