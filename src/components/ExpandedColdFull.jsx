@@ -10,7 +10,7 @@ import "../styles/valve-modal.css";
 import PumpControlModal from "./PumpControlModal";
 import "../styles/pump-modal.css";
 
-export default function ExpandedColdFull() {
+export default function ExpandedColdFull({ setCurrentPage }) {
   const [theme, setTheme] = useState("light");
   const [showBrilliance, setShowBrilliance] = useState(false);
   const [activeValve, setActiveValve] = useState(null);
@@ -159,7 +159,7 @@ export default function ExpandedColdFull() {
       </div>
 
       {/* New Collapsible Sidebar */}
-      <Sidebar />
+      <Sidebar setCurrentPage={setCurrentPage} />
 
       {/* main viewport */}
 

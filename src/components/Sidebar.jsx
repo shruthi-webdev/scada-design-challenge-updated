@@ -14,7 +14,7 @@ const iconMap = {
   "obi-settings-iec": <obi-settings-iec></obi-settings-iec>,
 };
 
-export default function Sidebar() {
+export default function Sidebar({ setCurrentPage }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
@@ -64,7 +64,12 @@ export default function Sidebar() {
       <div className="sidebar-content">
         <div className="menu-items">
           {menuItems.map((item) => (
-            <div key={item.id} className="menu-item">
+            <div key={item.id} className={`menu-item ${item.label === 'Table' ? 'active' : ''}`} onClick={() => { 
+              if (setCurrentPage) {
+                if (item.label === 'Table') setCurrentPage('table');
+                else setCurrentPage('dashboard');
+              }
+            }}>
               <div className="menu-icon">
                 {iconMap[item.icon]}
               </div>
@@ -76,7 +81,7 @@ export default function Sidebar() {
         {/* Bottom Menu Items */}
         <div className="bottom-items">
           {bottomItems.map((item) => (
-            <div key={item.id} className="menu-item">
+            <div key={item.id} className="menu-item" onClick={() => { if (item.label === 'Alerts' && setCurrentPage) setCurrentPage('alerts'); }}>
               <div className="menu-icon">
                 {iconMap[item.icon]}
               </div>
